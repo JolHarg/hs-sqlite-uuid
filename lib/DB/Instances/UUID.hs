@@ -4,12 +4,12 @@
 
 module DB.Instances.UUID where
 
-import           Data.UUID.Types
-import           Database.SQLite.Simple
-import           Database.SQLite.Simple.FromField
-import           Database.SQLite.Simple.Internal
-import           Database.SQLite.Simple.Ok
-import           Database.SQLite.Simple.ToField
+import Data.UUID.Types
+import Database.SQLite.Simple
+import Database.SQLite.Simple.FromField
+import Database.SQLite.Simple.Internal
+import Database.SQLite.Simple.Ok
+import Database.SQLite.Simple.ToField
 
 instance FromField UUID where
     fromField f@(Field (SQLText txt) _) = case fromText txt of
