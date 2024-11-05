@@ -46,6 +46,7 @@ test-suite sqlite-uuid-test
     NoGeneralisedNewtypeDeriving
     OverloadedStrings
     UnicodeSyntax
+
   main-is:            Spec.hs
   ghc-options:
     -Wall -Werror -threaded -rtsopts -with-rtsopts=-N -Weverything
@@ -57,9 +58,11 @@ test-suite sqlite-uuid-test
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Wno-missed-specialisations
+
   build-depends:
     , base   >=4.20.0.0 && <5
     , hspec
+
   -- , sqlite-uuid
   -- , hspec-core
   -- , hspec-expectations
