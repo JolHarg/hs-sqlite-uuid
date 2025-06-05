@@ -1,6 +1,6 @@
-cabal-version:      3.4
+cabal-version:      3.12
 name:               sqlite-uuid
-version:            0.1.0.0
+version:            0.2.0.0
 license:            AGPL-3.0-only
 author:             Dan Dart
 maintainer:         git@dandart.co.uk
@@ -17,17 +17,15 @@ library
 
   -- other-extensions:
   build-depends:
-    , base           >=4.20.0.0 && <5
-    , sqlite-simple
-    , uuid-types
-
+    , base           ^>=4.21.0.0
+    , sqlite-simple  ^>=0.4.19.0
+    , uuid-types     ^>=1.0.6
   hs-source-dirs:     lib
   default-language:   GHC2024
   default-extensions:
     NoGeneralisedNewtypeDeriving
     OverloadedStrings
     UnicodeSyntax
-
   ghc-options:
     -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
@@ -39,6 +37,8 @@ library
     -Wno-unrecognised-warning-flags -Wno-missed-specialisations
 
 test-suite sqlite-uuid-test
+  if arch(javascript) || arch(wasm32)
+    buildable: False
   hs-source-dirs:     test
   type:               exitcode-stdio-1.0
   default-language:   GHC2024
@@ -46,10 +46,11 @@ test-suite sqlite-uuid-test
     NoGeneralisedNewtypeDeriving
     OverloadedStrings
     UnicodeSyntax
-
   main-is:            Spec.hs
+  if !arch(wasm32)
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N 
   ghc-options:
-    -Wall -Werror -threaded -rtsopts -with-rtsopts=-N -Weverything
+    -Wall -Werror -Weverything
     -Wno-unsafe -Wno-safe -Wno-missing-import-lists
     -Wno-missing-export-lists -Wno-implicit-prelude
     -Wno-missing-safe-haskell-mode -Wno-missing-kind-signatures
@@ -58,11 +59,9 @@ test-suite sqlite-uuid-test
     -Wno-missing-role-annotations -Wno-missing-kind-signatures
     -Wno-missing-poly-kind-signatures -Wno-unrecognised-warning-flags
     -Wno-missed-specialisations
-
   build-depends:
-    , base   >=4.20.0.0 && <5
-    , hspec
-
+    , base   ^>=4.21.0.0
+    , hspec  ^>=2.11.12
   -- , sqlite-uuid
   -- , hspec-core
   -- , hspec-expectations
