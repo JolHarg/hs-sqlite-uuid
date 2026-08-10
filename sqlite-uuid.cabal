@@ -29,7 +29,7 @@ library
     UnicodeSyntax
 
   ghc-options:
-    -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
@@ -56,7 +56,7 @@ test-suite sqlite-uuid-test
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
 
   ghc-options:
-    -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
+    -O3 -Wall -Werror -Weverything -Wno-unsafe -Wno-safe
     -Wno-missing-import-lists -Wno-missing-export-lists
     -Wno-implicit-prelude -Wno-missing-safe-haskell-mode
     -Wno-missing-kind-signatures -Wno-missing-poly-kind-signatures
